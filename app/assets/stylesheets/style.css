@@ -39,7 +39,7 @@ textarea {
 }
 
 .container {
-    height: 650px;
+    /*height: 650px;*/
     max-width: 80%;
     width: 50%;
     margin: 0 auto;
@@ -69,7 +69,7 @@ textarea {
 }
 
 #css-try {
-    height: 280px;
+    /*height: 280px;*/
     width: 100%;
     border-top: 10px solid #666;
 }
