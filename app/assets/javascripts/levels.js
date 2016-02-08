@@ -13,10 +13,12 @@ app.levels["Basic Shapes"].level1 = {
             { attr: "background", val: "rgb(255, 0, 0) none repeat scroll 0% 0% / auto padding-box border-box;" }
         ],
         [
-            { attr: "border-color", val: "rgb(0, 255, 0) none repeat scroll 0% 0% / auto padding-box border-box;" }
+            { attr: "border-color", val: "rgb(0, 128, 0);" },
+            { attr: "border", val: "5px solid rgb(0, 128, 0)"}
         ]
     ],
-    question: "",
+    question: "Make a red circle",
+    userElement: "user-circle",
     user: '<div class="user-circle" id="user-circle"></div>',
     css: '<div class="circle"></div>',
     code: [
