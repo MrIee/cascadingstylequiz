@@ -1,13 +1,32 @@
 var app = app || {};
 
-app.answer = [
-    { attr: "border-radius", val: "50%;" },
-    { attr: "border-radius", val: "75px;" },
-    { attr: "background-color", val: "rgb(255, 0, 0);" },
-    { attr: "background", val: "rgb(255, 0, 0) none repeat scroll 0% 0% / auto padding-box border-box;" }
-];
-
 app.numLines = 2;
+
+app.generateLineNumbers = function(lines) {
+    var html = '<div class="line-numbers">';
+
+    for (var i = 1; i <= lines; i++) {
+        html += i + "<br>";
+    }
+
+    html += "</div>";
+    return html;
+}
+
+app.generateCodebox = function(htmlBefore, htmlAfter, lines, $element ) {
+    var html = app.generateLineNumbers(lines);
+    html += "<pre>" + htmlBefore + "</pre>";
+    html += '<textarea class="code" autofocus></textarea>';
+    html += "<pre>" + htmlAfter + "</pre>";
+    $element.append(html);
+}
+
+app.generateCssView = function($element, htmlElement, id) {
+    var html = '<div class="cssview" id="' + id + '">';
+    html += htmlElement;
+    html += "</div>";
+    $element.append(html);
+}
 
 app.checkline = function(regex, line) {
     var result = line.match(regex);
@@ -41,14 +60,16 @@ app.checkAnswer = function(userAnswer, answer, $cssElement) {
                         parseFloat(userAttr) >= parseFloat(_answer.val) ) ||
                         _.isEqual(user_answer, _answer)
             }
-            // return _.isEqual(user_answer, _answer); // Use this line instead of above if block to check only for elements that match rather than keys/values.
+            // return _.isEqual(user_answer, _answer); // Use this line instead of above if block to check only for elements that match rather than matching keys/values.
         });
     });
 
-    if (match && userAnswer.length === app.numLines) {
-        console.log("true");
-        alert("Congrats, you made a red circle!");
-    }
+    // if (match && userAnswer.length === app.numLines) {
+    //     console.log("true");
+    //     alert("Congrats, you made a red circle!");
+    // }
+
+    return match && userAnswer.length === app.numLines;
 }
 
 /*
