@@ -1,0 +1,30 @@
+<div class="col-md-4 center-row center-text">
+    <h1 id="quizTitle"></h1>
+</div>
+
+<div class="quiz-container">
+    <div id="css">
+
+        <script id="cssview" type="html/template">
+            <div class="cssview" id="<%%= id %>">
+                <%%= html %>
+            </div>
+        </script>
+
+    </div>
+    <div id="css-try">
+
+        <div id="editor">
+            <div id="cssbox">
+
+                <script id="codebox" type="html/template">
+                    <pre><%%= before %></pre>
+                    <textarea class="code" rows="<%%= rows %>" id="<%%= id %>"></textarea>
+                    <pre><%%= after %></pre>
+                </script>
+
+            </div>
+        </div>
+
+    </div>
+</div>

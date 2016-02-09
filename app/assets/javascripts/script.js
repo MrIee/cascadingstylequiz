@@ -92,6 +92,8 @@ app.captureCode = function($element, $userCssElement) {
 }
 
 app.generateLevel = function(category, level) {
+    $("#quizTitle").text(app.levels[category].title);
+
     var thisLevel = app.levels[category]["level" + level];
 
     var userElement = thisLevel.userElement;
@@ -145,13 +147,14 @@ app.generateLevel = function(category, level) {
 
 }
 
+var PagesController = Paloma.controller('Pages');
 
-$(document).ready(function() {
+PagesController.prototype.index = function(){};
 
+PagesController.prototype.quiz = function(){
     app.$cssElement = $("#css");
     app.$codeElement = $("#cssbox");
     app.$codeBox = $(".code");
 
-    app.generateLevel("Basic Shapes", "1");
-
-});
+    app.generateLevel(this.params["quizTitle"], "1");
+};

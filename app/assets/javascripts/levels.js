@@ -1,10 +1,12 @@
 var app = app || {};
 
 app.levels = {
-    "Basic Shapes": {}
+    "basicshapes": {}
 };
 
-app.levels["Basic Shapes"].level1 = {
+app.levels["basicshapes"].title = "Basic Shapes";
+
+app.levels["basicshapes"].level1 = {
     answers : [
         [
             { attr: "border-radius", val: "50%;" },
@@ -26,7 +28,7 @@ app.levels["Basic Shapes"].level1 = {
     ]
 };
 
-app.levels["Basic Shapes"].level2 = {
+app.levels["basicshapes"].level2 = {
     answers : [
         [
             { attr: "border-bottom", val: "75px solid rgb(255, 0, 0);" }
