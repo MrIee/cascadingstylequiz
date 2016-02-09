@@ -8,26 +8,22 @@
     <div class="container">
         <div id="css">
 
-            <!-- <div class="cssview" id="user-css">
-                <div class="user-circle" id="user-circle"></div>
-            </div>
-
-            <div class="cssview" id="example-css">
-                <div class="circle"></div>
-            </div> -->
+            <script id="cssview" type="html/template">
+                <div class="cssview" id="<%%= id %>">
+                    <%%= html %>
+                </div>
+            </script>
 
         </div>
         <div id="css-try">
 
             <div id="editor">
                 <div id="cssbox">
-                    <!-- <div class="line-numbers">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10</div>
-
-                    <pre>#circle {<br/>  height: 150px;<br/>  width: 150px;<br/>  border: 5px solid black;</pre>
-                    <textarea id="code" autofocus></textarea>
-
-                    <pre>}</pre> -->
-
+                    <script id="codebox" type="html/template">
+                        <pre><%%= before %></pre>
+                        <textarea class="code" rows="<%%= rows %>" id="<%%= id %>"></textarea>
+                        <pre><%%= after %></pre>
+                    </script>
                 </div>
 
             </div>

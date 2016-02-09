@@ -30,7 +30,7 @@ textarea {
     font-family: 'Source Code Pro', monospace;
     font-size: 16px;
     color: white;
-    line-height: 1.5;
+    line-height: 1.4;
     background-color: #999;
     border: 1px inset #ccc;
     outline: none;
@@ -130,6 +130,30 @@ textarea {
     border-radius: 100%;
     border: 5px solid black;
 
+    margin: -75px 0 0 -75px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.user-triangle {
+    height: 0px;
+    width: 0px;
+    border: 75px solid transparent;
+
+    margin: -75px 0 0 -75px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.triangle {
+    height: 0;
+    width: 0;
+    border: 75px solid transparent;
+    border-bottom: 75px solid red;
+
+    margin: -75px 0 0 -75px;
     position: absolute;
     top: 50%;
     left: 50%;

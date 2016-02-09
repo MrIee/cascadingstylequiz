@@ -1,7 +1,6 @@
 var app = app || {};
 
 app.$cssElement = $("<div/>");
-app.$userCssElement = $("<div/>");
 app.$codeElement = $("<div/>");
 app.$codeBox = $("<div/>");
 
@@ -13,22 +12,30 @@ app.generateLineNumbers = function(lines) {
     }
 
     html += "</div>";
-    app.$codeElement.css("height", (lines * 25) + "px");
+    app.$codeElement.css("height", (lines * 24 + 20) + "px");
     app.$codeElement.append(html);
 }
 
 app.generateCodebox = function(htmlBefore, htmlAfter, rows, id) {
-    var html = "<pre>" + htmlBefore + "</pre>";
-    html += '<textarea class="code" rows="' + rows + '" + id="' + id + '"></textarea>';
-    html += "<pre>" + htmlAfter + "</pre>";
-    app.$codeElement.append(html);
+    var codeBoxViewTemplate = _.template( $("#codebox").html() );
+    var displayView = codeBoxViewTemplate({
+        before: htmlBefore,
+        rows: rows,
+        id: id,
+        after: htmlAfter
+    });
+
+    app.$codeElement.append(displayView);
 }
 
 app.generateCssView = function(htmlCode, id) {
-    var html = '<div class="cssview" id="' + id + '">';
-    html += htmlCode;
-    html += "</div>";
-    app.$cssElement.append(html);
+    var cssViewTemplate =  _.template( $("#cssview").html() );
+    var displayView = cssViewTemplate({
+        id: id,
+        html: htmlCode
+    });
+
+    app.$cssElement.append(displayView);
 }
 
 app.checkline = function(regex, line) {
@@ -48,28 +55,12 @@ app.checkline = function(regex, line) {
 
     Makes a deep comparison between the users answer and the actual answer to check if the user is correct.
 */
-app.checkAnswer = function(userAnswer, answer, lines) {
+app.checkAnswer = function(userAnswer, answer, lines, $userCssElement) {
     match = _.every(userAnswer, function (user_answer) {
         return _.some(answer, function (_answer) {
-
-            if ( user_answer.attr && user_answer.attr === _answer.attr ) {
-                var userAttr = app.$userCssElement.css(user_answer.attr);
-
-                var userCss = app.checkline( /[-+]?[0-9]*\.?[0-9]*(.*)/, userAttr );
-                var answerCss = app.checkline( /[-+]?\d*\.?\d*(.*);/, _answer.val );
-
-                return ( userCss[1] === answerCss[1] &&
-                        parseFloat(userAttr) >= parseFloat(_answer.val) ) ||
-                        _.isEqual(user_answer, _answer)
-            }
-            // return _.isEqual(user_answer, _answer); // Use this line instead of above if block to check only for elements that match rather than matching keys/values.
+            return _.isEqual(user_answer, _answer);
         });
     });
-
-    // if (match && userAnswer.length === app.numLines) {
-    //     console.log("true");
-    //     alert("Congrats, you made a red circle!");
-    // }
 
     return match && userAnswer.length === lines;
 }
@@ -82,7 +73,7 @@ app.checkAnswer = function(userAnswer, answer, lines) {
 
     Captures any valid css code that the user inputs into specified $element/textarea.
 */
-app.captureCode = function($element) {
+app.captureCode = function($element, $userCssElement) {
     var code = $element.val().split("\n");
     var userAnswer = [];
 
@@ -92,7 +83,7 @@ app.captureCode = function($element) {
 
             if (css[1]) {
                 obj["attr"] = css[1];
-                obj["val"] = app.$userCssElement.css(css[1]) + ";";
+                obj["val"] = $userCssElement.css(css[1]) + ";";
             }
             userAnswer.push(obj);
         }
@@ -100,22 +91,28 @@ app.captureCode = function($element) {
     return userAnswer;
 }
 
-app.generateLevel = function(numTextareas, category, level) {
-    var userElement = app.levels[category]["level"+level].userElement;
-    var user = app.levels[category]["level"+level].user;
-    var css = app.levels[category]["level"+level].css;
+app.generateLevel = function(category, level) {
+    var thisLevel = app.levels[category]["level" + level];
+
+    var userElement = thisLevel.userElement;
+    var user = thisLevel.user;
+    var css = thisLevel.css;
 
     app.generateCssView(user, "user-css");
     app.generateCssView(css, "example-css");
 
-    app.$userCssElement = $("#" + userElement);
+    numLines = 0;
 
-    app.generateLineNumbers(20);
-
-    var code = app.levels[category]["level"+level].code;
+    var code = thisLevel.code;
     for (var i = 0; i < code.length; i++) {
+        var beforeLines = code[i].before.split("<br/>");
+        var afterLines = code[i].after.split("<br/>");
+        numLines += beforeLines.length + afterLines.length + code[i].rows;
+
         app.generateCodebox(code[i].before, code[i].after, code[i].rows, i);
     };
+
+    app.generateLineNumbers(numLines);
 
     correct = 0;
 
@@ -127,14 +124,15 @@ app.generateLevel = function(numTextareas, category, level) {
         });
 
         $(this).on("keyup", function() {
-            app.$userCssElement.attr("style", $(this).val() );
-
-            var userAnswer = app.captureCode( $(this) );
-            var answer = app.levels[category]["level" + level].answers;
-            var lines = app.levels[category]["level" + level].code
             var num = $(this).attr("id");
+            var $userCssElement = $(thisLevel.code[num].cssSelector);
+            $userCssElement.attr( "style", $(this).val() );
 
-            if ( app.checkAnswer(userAnswer, answer[num], lines[num].rows ) ) {
+            var userAnswer = app.captureCode( $(this), $userCssElement );
+            var answer = thisLevel.answers;
+            var lines = thisLevel.code
+
+            if ( app.checkAnswer(userAnswer, answer[num], lines[num].rows, $userCssElement ) ) {
                 correct++;
             }
 
@@ -154,6 +152,6 @@ $(document).ready(function() {
     app.$codeElement = $("#cssbox");
     app.$codeBox = $(".code");
 
-    app.generateLevel(2, "Basic Shapes", "1");
+    app.generateLevel("Basic Shapes", "1");
 
 });
