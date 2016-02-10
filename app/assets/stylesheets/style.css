@@ -41,6 +41,29 @@ textarea {
     overflow: hidden;
 }
 
+.wrapper {
+    height: 100vh;
+    min-height: 100vh;
+}
+
+.wrapper:after {
+    content:"";
+    display: block;
+}
+
+.footer {
+    height: 4em;
+    width: 100%;
+    padding: 1em;
+    border-top: 1px solid #ccc;
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+.center-block {
+    display: block;
+    margin: 0 auto;
+}
+
 .center-row {
     float: none;
     margin: 0 auto;
@@ -54,9 +77,15 @@ textarea {
     width: 100%;
 }
 
+.btn-next-level {
+    width: 200px;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
 .quiz-container {
     max-width: 80%;
-    width: 50%;
+    width: 60%;
     margin: 0 auto;
     border: 10px solid #666;
     border-radius: 5px;
@@ -128,4 +157,11 @@ textarea {
     border-right: 1px solid black;
     background-color: lightgreen;
     color: #999;
+}
+
+.center-shape {
+    margin: -75px 0 0 -75px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
 }

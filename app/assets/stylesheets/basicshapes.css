@@ -1,12 +1,10 @@
+/* ====================== Circle ======================= */
+
 .user-circle {
     height: 150px;
     width: 150px;
     margin: -75px 0 0 -75px;
     border: 5px solid black;
-
-    position: absolute;
-    top: 50%;
-    left: 50%;
 }
 
 .circle {
@@ -16,22 +14,14 @@
     background-color: red;
     border-radius: 100%;
     border: 5px solid black;
-
-    margin: -75px 0 0 -75px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
 }
+
+/* ====================== Triangle ======================= */
 
 .user-triangle {
     height: 0px;
     width: 0px;
     border: 75px solid transparent;
-
-    margin: -75px 0 0 -75px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
 }
 
 .triangle {
@@ -39,9 +29,51 @@
     width: 0;
     border: 75px solid transparent;
     border-bottom: 75px solid red;
+}
 
-    margin: -75px 0 0 -75px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
+/* ====================== Top-Right Triangle ======================= */
+
+.user-triangle-topright {
+    width: 0;
+    height: 0;
+}
+
+.triangle-topright {
+    width: 0;
+    height: 0;
+    border-top: 100px solid red;
+    border-left: 100px solid transparent;
+}
+
+/* ====================== Trapezoid ======================= */
+
+.user-trapezoid {
+    height: 0;
+    width: 200px;
+}
+
+.trapezoid {
+    height: 0;
+    width: 200px;
+    border-bottom: 100px solid red;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+}
+
+/* ====================== Trapezoid ======================= */
+
+.user-parallelogram {
+    width: 150px;
+    height: 100px;
+    border: 5px solid black;
+}
+
+.parallelogram {
+    width: 150px;
+    height: 100px;
+    border: 5px solid black;
+    -webkit-transform: skew(20deg);
+    -moz-transform: skew(20deg);
+    transform: skew(20deg);
+    background: red;
 }

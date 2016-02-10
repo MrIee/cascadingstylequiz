@@ -3,6 +3,8 @@ var app = app || {};
 app.$cssElement = $("<div/>");
 app.$codeElement = $("<div/>");
 app.$codeBox = $("<div/>");
+app.category = "";
+app.level = "";
 
 app.generateLineNumbers = function(lines) {
     var html = '<div class="line-numbers">';
@@ -96,7 +98,6 @@ app.generateLevel = function(category, level) {
 
     var thisLevel = app.levels[category]["level" + level];
 
-    var userElement = thisLevel.userElement;
     var user = thisLevel.user;
     var css = thisLevel.css;
 
@@ -141,10 +142,29 @@ app.generateLevel = function(category, level) {
             if (correct === code.length ) {
                 console.log("Yay you win!");
                 correct = 0;
+
+                $("#nextLevelBtn").addClass("btn-success");
+                $("#nextLevelBtn").on("click", function() {
+                    var nextLevel = level + 1
+                    if ( (nextLevel) <= ( _.size(app.levels[category]) - 1) ) {
+                        window.location.href = '/quizzes/' + category + "/" + nextLevel;
+                    }
+                });
             }
         });
     });
 
+}
+
+app.generatePagination = function(category, currLevel) {
+
+    for (var i = 0; i < _.size(app.levels[category]) - 1; i++) {
+        var $page = $("<li/>");
+        var $link = $("<a/>");
+        $page.html( $link.text(i + 1) );
+
+        $(".pagination").append($page);
+    }
 }
 
 var PagesController = Paloma.controller('Pages');
@@ -156,5 +176,10 @@ PagesController.prototype.quiz = function(){
     app.$codeElement = $("#cssbox");
     app.$codeBox = $(".code");
 
-    app.generateLevel(this.params["quizTitle"], "1");
+    app.category = this.params["quizTitle"];
+    app.level = parseInt(this.params["quizLevel"]);
+
+    app.generateLevel(app.category, app.level);
+
+    app.generatePagination(app.category, app.level);
 };
