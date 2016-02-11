@@ -1,0 +1,59 @@
+/* ====================== Pacman ======================= */
+
+.pacman-top {
+  height: 50px;
+  width: 100px;
+  border-radius: 50px 50px 0 0;
+  -webkit-transform: rotate(-35deg);
+  -moz-transform: rotate(-35deg);
+  transform: rotate(-35deg);
+  background-color: yellow;
+  -webkit-animation: chomp1 0.5s infinite;
+  -moz-animation: chomp1 0.5s infinite;
+  animation: chomp1 0.5s infinite;
+}
+
+.pacman-bottom {
+  height: 50px;
+  width: 100px;
+  border-radius: 0 0 50px 50px;
+  -webkit-transform: rotate(35deg);
+  -moz-transform: rotate(35deg);
+  transform: rotate(35deg);
+  background-color: yellow;
+  -webkit-animation: chomp2 0.5s infinite;
+  -moz-animation: chomp2 0.5s infinite;
+  animation: chomp2 0.5s infinite;
+}
+
+@-webkit-keyframes chomp1 {
+  0%   { transform: rotate(-35deg); }
+  50%   { transform: rotate(0deg); }
+  100% { transform: rotate(-35deg); }
+}
+@-moz-keyframes chomp1 {
+  0%   { transform: rotate(-35deg); }
+  50%   { transform: rotate(0deg); }
+  100% { transform: rotate(-35deg); }
+}
+@keyframes chomp1 {
+  0%   { transform: rotate(-35deg); }
+  50%   { transform: rotate(0deg); }
+  100% { transform: rotate(-35deg); }
+}
+
+@-webkit-keyframes chomp2 {
+  0%   { transform: rotate(35deg); }
+  50%   { transform: rotate(0deg); }
+  100% { transform: rotate(35deg); }
+}
+@-moz-keyframes chomp2 {
+  0%   { transform: rotate(35deg); }
+  50%   { transform: rotate(0deg); }
+  100% { transform: rotate(35deg); }}
+}
+@keyframes chomp2 {
+  0%   { transform: rotate(35deg); }
+  50%   { transform: rotate(0deg); }
+  100% { transform: rotate(35deg); }
+}

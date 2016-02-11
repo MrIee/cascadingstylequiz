@@ -15,5 +15,9 @@
 //= require underscore
 //= require bootstrap-sprockets
 //= require paloma
+//= require levels.js
+//= require basicshapes.js
+//= require animations.js
+//= require script.js
 // require turbolinks
-//= require_tree .
+// require_tree .

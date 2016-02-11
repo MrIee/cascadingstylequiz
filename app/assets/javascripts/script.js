@@ -19,12 +19,17 @@ app.generateLineNumbers = function(lines) {
 }
 
 app.generateCodebox = function(htmlBefore, htmlAfter, rows, id) {
+    var beforerows = htmlBefore.split("\n").length;
+    var afterrows = htmlAfter.split("\n").length;
+
     var codeBoxViewTemplate = _.template( $("#codebox").html() );
     var displayView = codeBoxViewTemplate({
+        beforerows: beforerows,
         before: htmlBefore,
         rows: rows,
         id: id,
-        after: htmlAfter
+        after: htmlAfter,
+        afterrows: afterrows
     });
 
     app.$codeElement.append(displayView);
@@ -34,7 +39,7 @@ app.generateCssView = function(htmlCode, id) {
     var cssViewTemplate =  _.template( $("#cssview").html() );
     var displayView = cssViewTemplate({
         id: id,
-        html: htmlCode
+        html: htmlCode,
     });
 
     app.$cssElement.append(displayView);
@@ -108,8 +113,8 @@ app.generateLevel = function(category, level) {
 
     var code = thisLevel.code;
     for (var i = 0; i < code.length; i++) {
-        var beforeLines = code[i].before.split("<br/>");
-        var afterLines = code[i].after.split("<br/>");
+        var beforeLines = code[i].before.split("\n");
+        var afterLines = code[i].after.split("\n");
         numLines += beforeLines.length + afterLines.length + code[i].rows;
 
         app.generateCodebox(code[i].before, code[i].after, code[i].rows, i);
@@ -129,7 +134,14 @@ app.generateLevel = function(category, level) {
         $(this).on("keyup", function() {
             var num = $(this).attr("id");
             var $userCssElement = $(thisLevel.code[num].cssSelector);
-            $userCssElement.attr( "style", $(this).val() );
+            // $userCssElement.attr( "style", $(this).val() );
+
+            var cssCode = ""
+            $(".stylesheetcode").each(function() {
+                cssCode += $(this).val();
+            });
+
+            $("#stylesheet").text(cssCode);
 
             var userAnswer = app.captureCode( $(this), $userCssElement );
             var answer = thisLevel.answers;
