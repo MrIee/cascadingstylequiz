@@ -53,6 +53,7 @@ app.levels["house"].level3 = {
             { attr: "width", val: "50px;" },
             { attr: "border-radius", val: "25px;" },
             { attr: "border-radius", val: "50%;" },
+            { attr: "border-radius", val: "100%;" },
             { attr: "box-shadow", val: "rgb(255, 165, 0) 0px 0px 10px 5px;" },
             { attr: "background-color", val: "rgb(255, 255, 0);" },
             { attr: "background", val: "rgb(255, 255, 0) none repeat scroll 0% 0% / auto padding-box border-box;" }
