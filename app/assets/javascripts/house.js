@@ -39,7 +39,7 @@ app.levels["house"].level2 = {
     code: [
         {
             cssSelector: "#user-houseroof",
-            before: "#houseroof {<br/>  position: absolute;",
+            before: "#roof {<br/>  position: absolute;",
             after: "}",
             rows: 5
         }
