@@ -26,29 +26,24 @@ pre {
 }
 
 h1 {
-    color: #eee;
+    color: #ddd;
 }
 
-.stylesheetcode {
+textarea {
     display: block;
     padding: 0;
+    padding-left: 3px;
     width: calc(100% - 15px);
+    margin-left: 16px;
     font-family: 'Source Code Pro', monospace;
     font-size: 16px;
     color: white;
-    line-height: 1.5;
+    line-height: 1.4;
     background-color: #888;
-    border: none;
+    border: 1px inset #bbb;
     outline: none;
     resize: none;
     overflow: hidden;
-}
-
-.code {
-    padding-left: 3px;
-    margin-left: 16px;
-    line-height: 1.4;
-    border: 1px inset #bbb;
 }
 
 .wrapper {

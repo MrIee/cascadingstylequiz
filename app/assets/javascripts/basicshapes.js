@@ -10,12 +10,12 @@ app.levels["basicshapes"].level1 = {
         ]
     ],
     question: "Make a red circle",
-    user: '<div class="user-circle center-shape" id="circle"></div>',
+    user: '<div class="user-circle center-shape" id="user-circle"></div>',
     css: '<div class="circle center-shape"></div>',
     code: [
         {
-            cssSelector: "#circle",
-            before: "#circle {\n  height: 150px;\n  width: 150px;\n  border: 5px solid black;",
+            cssSelector: "#user-circle",
+            before: "#circle {<br/>  height: 150px;<br/>  width: 150px;<br/>  border: 5px solid black;",
             after: "}",
             rows: 2
         }
@@ -29,12 +29,12 @@ app.levels["basicshapes"].level2 = {
         ]
     ],
     question: "Make a red triangle",
-    user: '<div class="user-triangle center-shape" id="triangle"></div>',
+    user: '<div class="user-triangle center-shape" id="user-triangle"></div>',
     css: '<div class="triangle center-shape"></div>',
     code: [
         {
-            cssSelector: "#triangle",
-            before: "#triangle {\n  height: 0px;\n  width: 0px;\n  border: 75px solid transparent;",
+            cssSelector: "#user-triangle",
+            before: "#triangle {<br/>  height: 0px;<br/>  width: 0px;<br/>  border: 75px solid transparent;",
             after: "}",
             rows: 1
         }
@@ -49,12 +49,12 @@ app.levels["basicshapes"].level3 = {
         ]
     ],
     question: "Make another red triangle",
-    user: '<div class="user-triangle-topright center-shape" id="triangle-topright"></div>',
+    user: '<div class="user-triangle-topright center-shape" id="user-triangle-topright"></div>',
     css: '<div class="triangle-topright center-shape"></div>',
     code: [
         {
-            cssSelector: "#triangle-topright",
-            before: "#triangle-topright {\n  height: 0px;\n  width: 0px;",
+            cssSelector: "#user-triangle-topright",
+            before: "#triangle-topright {<br/>  height: 0px;<br/>  width: 0px;",
             after: "}",
             rows: 2
         }
@@ -70,12 +70,12 @@ app.levels["basicshapes"].level4 = {
         ]
     ],
     question: "Make a trapezoid",
-    user: '<div class="user-trapezoid center-shape" id="trapezoid"></div>',
+    user: '<div class="user-trapezoid center-shape" id="user-trapezoid"></div>',
     css: '<div class="trapezoid center-shape"></div>',
     code: [
         {
-            cssSelector: "#trapezoid",
-            before: "#trapezoid {\n  height: 0px;\n  width: 100px;",
+            cssSelector: "#user-trapezoid",
+            before: "#trapezoid {<br/>  height: 0px;<br/>  width: 100px;",
             after: "}",
             rows: 3
         }
@@ -91,12 +91,12 @@ app.levels["basicshapes"].level5 = {
         ]
     ],
     question: "Make a parallelogram",
-    user: '<div class="user-parallelogram center-shape" id="parallelogram"></div>',
+    user: '<div class="user-parallelogram center-shape" id="user-parallelogram"></div>',
     css: '<div class="parallelogram center-shape"></div>',
     code: [
         {
-            cssSelector: "#parallelogram",
-            before: "#parallelogram {\n  height: 150px;\n  width: 100px;\n  border: 5px solid black",
+            cssSelector: "#user-parallelogram",
+            before: "#parallelogram {<br/>  height: 150px;<br/>  width: 100px;<br/>  border: 5px solid black",
             after: "}",
             rows: 2
         }

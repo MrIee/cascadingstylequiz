@@ -113,8 +113,8 @@ app.generateLevel = function(category, level) {
 
     var code = thisLevel.code;
     for (var i = 0; i < code.length; i++) {
-        var beforeLines = code[i].before.split("\n");
-        var afterLines = code[i].after.split("\n");
+        var beforeLines = code[i].before.split("<br/>");
+        var afterLines = code[i].after.split("<br/>");
         numLines += beforeLines.length + afterLines.length + code[i].rows;
 
         app.generateCodebox(code[i].before, code[i].after, code[i].rows, i);
@@ -123,6 +123,7 @@ app.generateLevel = function(category, level) {
     app.generateLineNumbers(numLines);
 
     correct = 0;
+    ids = [];
 
     $(".code").each(function() {
 
@@ -132,37 +133,50 @@ app.generateLevel = function(category, level) {
         });
 
         $(this).on("keyup", function() {
+            var $textarea = $(this);
             var num = $(this).attr("id");
-            var $userCssElement = $(thisLevel.code[num].cssSelector);
-            // $userCssElement.attr( "style", $(this).val() );
+            var $userCssElement = $("<div/>");
 
-            var cssCode = ""
-            $(".stylesheetcode").each(function() {
-                cssCode += $(this).val();
+            $(".code").each(function() {
+                var id = $(this).attr("id");
+                $userCssElement = $(thisLevel.code[id].cssSelector);
+                $userCssElement.css("animation", "");
             });
 
-            $("#stylesheet").text(cssCode);
 
-            var userAnswer = app.captureCode( $(this), $userCssElement );
-            var answer = thisLevel.answers;
-            var lines = thisLevel.code
-
-            if ( app.checkAnswer(userAnswer, answer[num], lines[num].rows, $userCssElement ) ) {
-                correct++;
-            }
-
-            if (correct === code.length ) {
-                console.log("Yay you win!");
-                correct = 0;
-
-                $("#nextLevelBtn").addClass("btn-success");
-                $("#nextLevelBtn").on("click", function() {
-                    var nextLevel = level + 1
-                    if ( (nextLevel) <= ( _.size(app.levels[category]) - 1) ) {
-                        window.location.href = '/quizzes/' + category + "/" + nextLevel;
-                    }
+            setTimeout(function() {
+                $(".code").each(function() {
+                    var id = $(this).attr("id");
+                    $userCssElement = $(thisLevel.code[id].cssSelector);
+                    $userCssElement.attr( "style", $(this).val() );
                 });
-            }
+
+                $userCssElement = $(thisLevel.code[num].cssSelector);
+                var userAnswer = app.captureCode( $textarea, $userCssElement );
+                var answer = thisLevel.answers;
+                console.log(userAnswer);
+                var lines = thisLevel.code
+                if ( app.checkAnswer(userAnswer, answer[num], lines[num].rows, $userCssElement ) ) {
+                    correct++;
+                }
+
+                if (correct === code.length ) {
+                    console.log("Yay you win!");
+                    correct = 0;
+
+                    $("#nextLevelBtn").addClass("btn-success");
+                    $("#nextLevelBtn").on("click", function() {
+                        var nextLevel = level + 1
+                        if ( (nextLevel) <= ( _.size(app.levels[category]) - 1) ) {
+                            window.location.href = '/quizzes/' + category + "/" + nextLevel;
+                        }
+                    });
+                }
+
+
+            }, 100);
+
+
         });
     });
 

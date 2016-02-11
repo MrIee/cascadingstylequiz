@@ -3,10 +3,10 @@ app.levels["animations"].title = "Animations";
 app.levels["animations"].level1 = {
     answers : [
         [
-            { attr: "border-radius", val: "50%;" },
-            { attr: "border-radius", val: "75px;" },
-            { attr: "background-color", val: "rgb(255, 0, 0);" },
-            { attr: "background", val: "rgb(255, 0, 0) none repeat scroll 0% 0% / auto padding-box border-box;" }
+            { attr: "animation", val: "chomp1 0.5s ease 0s infinite normal none running;" }
+        ],
+        [
+            { attr: "animation", val: "chomp2 0.5s ease 0s infinite normal none running;" }
         ]
     ],
     question: "Make pacman eat",
@@ -15,15 +15,15 @@ app.levels["animations"].level1 = {
     code: [
         {
             cssSelector: "#pacman-top",
-            before: "#pacman-top {\n  height: 50px;\n  width: 100px;\n  border-radius: 50px 50px 0 0;\n  -webkit-transform: rotate(-35deg);\n  -moz-transform: rotate(-35deg);\n  transform: rotate(-35deg);\n  background-color: yellow;",
-            after: "}\n",
+            before: "#pacman-top {<br/>  height: 50px;<br/>  width: 100px;<br/>  border-radius: 50px 50px 0 0;<br/>  background-color: yellow;",
+            after: "}<br/>",
             rows: 1
         },
 
         {
             cssSelector: "#pacman-bottom",
-            before: "#pacman-bottom {\n  height: 50px;\n  width: 100px;\n  border-radius: 50px 50px 0 0;\n  -webkit-transform: rotate(35deg);\n  -moz-transform: rotate(35deg);\n  transform: rotate(35deg);\n  background-color: yellow;",
-            after: "}\n\n@keyframes chomp1 {\n  0%   { transform: rotate(-35deg); }\n  50%   { transform: rotate(0deg); }\n  100% { transform: rotate(-35deg); }\n}\n\n@keyframes chomp2 {\n  0%   { transform: rotate(35deg); }\n  50%   { transform: rotate(0deg); }\n  100% { transform: rotate(35deg); }\n}",
+            before: "#pacman-bottom {<br/>  height: 50px;<br/>  width: 100px;<br/>  border-radius: 50px 50px 0 0;<br/>  background-color: yellow;",
+            after: "}<br/><br/>@keyframes chomp1 {<br/>  0%   { transform: rotate(-35deg); }<br/>  50%   { transform: rotate(0deg); }<br/>  100% { transform: rotate(-35deg); }<br/>}<br/><br/>@keyframes chomp2 {<br/>  0%   { transform: rotate(35deg); }<br/>  50%   { transform: rotate(0deg); }<br/>  100% { transform: rotate(35deg); }<br/>}",
             rows: 1
         }
     ]
