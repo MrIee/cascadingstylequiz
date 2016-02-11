@@ -106,6 +106,8 @@ app.generateLevel = function(category, level) {
     var user = thisLevel.user;
     var css = thisLevel.css;
 
+    $("#quizQuestion").text(thisLevel.question);
+
     app.generateCssView(user, "user-css");
     app.generateCssView(css, "example-css");
 
@@ -154,6 +156,7 @@ app.generateLevel = function(category, level) {
                 $userCssElement = $(thisLevel.code[num].cssSelector);
                 var userAnswer = app.captureCode( $textarea, $userCssElement );
                 var answer = thisLevel.answers;
+                console.log(thisLevel.answers);
                 console.log(userAnswer);
                 var lines = thisLevel.code
                 if ( app.checkAnswer(userAnswer, answer[num], lines[num].rows, $userCssElement ) ) {

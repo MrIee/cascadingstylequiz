@@ -9,7 +9,7 @@ app.levels["animations"].level1 = {
             { attr: "animation", val: "chomp2 0.5s ease 0s infinite normal none running;" }
         ]
     ],
-    question: "Make pacman eat",
+    question: "Help Pacman learn to chomp.",
     user: '<div class="center-shape"><div class="user-pacman-top" id="pacman-top"></div><div class="user-pacman-bottom" id="pacman-bottom"></div></div>',
     css: '<div class="center-shape"><div class="pacman-top"></div><div class="pacman-bottom"></div></div>',
     code: [

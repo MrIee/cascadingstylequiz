@@ -17,6 +17,7 @@
 //= require paloma
 //= require levels.js
 //= require basicshapes.js
+//= require house.js
 //= require animations.js
 //= require script.js
 // require turbolinks

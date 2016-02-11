@@ -26,7 +26,12 @@ pre {
 }
 
 h1 {
-    color: #ddd;
+    font-size: 4em;
+    color: #ccc;
+}
+
+h3 {
+    color: #eee;
 }
 
 textarea {
@@ -72,7 +77,11 @@ textarea {
 }
 
 .navbar-brand {
-    color: steelblue;
+    color: rgb(0, 175, 0);
+}
+
+.navbar-brand:hover {
+    color: darkgreen;
 }
 
 .navbar-custom .navbar-nav > li > a {
@@ -82,6 +91,18 @@ textarea {
 .navbar-custom .navbar-nav > li > a:hover {
     color: limegreen;
     background-color: lightgreen;
+}
+
+#site-title {
+    margin-bottom: 1em;
+    font-size: 5em;
+
+    background-color: rgba(0, 0, 0, 0.4);
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: lightgreen 4px 4px 1px;
 }
 
 .center-block {
